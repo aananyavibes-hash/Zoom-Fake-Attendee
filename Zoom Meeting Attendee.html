@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zoom Meeting Participants | Active Zoom Meeting Attendee Service | @armanparticipantsbot</title>
+<meta name="description" content="Professional zoom meeting attendee service. Need active participants for your webinar, online class or virtual event? Get custom-named zoom meeting attendees instantly via Telegram @armanparticipantsbot.">
+<meta name="keywords" content="zoom meeting attendee, zoom participants, zoom meeting participants, active zoom attendee, webinar participants, online meeting engagement, virtual event audience, zoom meeting attendee service">
+<meta property="og:title" content="Zoom Meeting Participants — Active Attendee Service">
+<meta property="og:description" content="Professional zoom meeting attendee team. Custom names, instant booking via Telegram.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #04080f;
+  --ink2: #0b1220;
+  --ink3: #111c2e;
+  --blue: #0057ff;
+  --blue2: #0039cc;
+  --cyan: #00d4ff;
+  --green: #00e676;
+  --red: #ff3366;
+  --gold: #f5a623;
+  --white: #ffffff;
+  --w90: rgba(255,255,255,.9);
+  --w70: rgba(255,255,255,.7);
+  --w50: rgba(255,255,255,.5);
+  --w30: rgba(255,255,255,.3);
+  --w15: rgba(255,255,255,.15);
+  --w08: rgba(255,255,255,.08);
+  --w04: rgba(255,255,255,.04);
+  --border: rgba(255,255,255,.1);
+  --border2: rgba(0,87,255,.3);
+  --r: 16px;
+  --r2: 24px;
+  --bebas: 'Bebas Neue', sans-serif;
+  --dm: 'DM Sans', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ink);
+  color: var(--white);
+  font-family: var(--dm);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 2px; }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; }
+
+/* ── NOISE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+  opacity: .4;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  height: 64px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(4,8,15,.85);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+  transition: background .3s;
+}
+.nav-logo {
+  font-family: var(--bebas);
+  font-size: 1.5rem;
+  letter-spacing: .12em;
+  background: linear-gradient(90deg, #fff 40%, var(--cyan));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-handle {
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--w50);
+  display: none;
+}
+.btn-nav {
+  background: var(--blue);
+  border: none; border-radius: 100px;
+  padding: 9px 22px;
+  font: 600 .82rem var(--dm);
+  color: #fff;
+  cursor: pointer;
+  transition: all .25s;
+  box-shadow: 0 4px 20px rgba(0,87,255,.4);
+}
+.btn-nav:hover { background: var(--blue2); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,87,255,.5); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 100px 24px 80px;
+  position: relative; overflow: hidden;
+  text-align: center;
+}
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.hero-bg-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,87,255,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,87,255,.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+}
+.hero-glow { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; }
+.hg1 { width: 600px; height: 600px; background: rgba(0,87,255,.18); top: -200px; left: 50%; transform: translateX(-50%); animation: gFloat 10s ease-in-out infinite; }
+.hg2 { width: 350px; height: 350px; background: rgba(0,212,255,.1); bottom: 0; right: -100px; animation: gFloat 8s ease-in-out 3s infinite; }
+.hg3 { width: 250px; height: 250px; background: rgba(0,230,118,.08); bottom: 100px; left: -80px; animation: gFloat 9s ease-in-out 1.5s infinite; }
+@keyframes gFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
+.hg1 { animation: gFloat1 10s ease-in-out infinite; }
+@keyframes gFloat1 { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-30px); } }
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,230,118,.1);
+  border: 1px solid rgba(0,230,118,.3);
+  border-radius: 100px;
+  padding: 7px 18px; margin-bottom: 32px;
+  font: 700 .72rem var(--mono);
+  color: var(--green);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  position: relative; z-index: 2;
+  animation: badgePop .8s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes badgePop { from { opacity: 0; transform: scale(.7); } to { opacity: 1; transform: scale(1); } }
+.badge-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--green);
+  animation: blink 1.4s ease-in-out infinite;
+}
+@keyframes blink { 0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,230,118,.5); } 50% { opacity: .6; box-shadow: 0 0 0 6px transparent; } }
+
+.hero-h1 {
+  font-family: var(--bebas);
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  letter-spacing: .04em;
+  line-height: .95;
+  margin-bottom: 28px;
+  position: relative; z-index: 2;
+  animation: heroIn 1s cubic-bezier(.16,1,.3,1) .2s both;
+}
+@keyframes heroIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+.hero-h1 .line-blue {
+  display: block;
+  background: linear-gradient(90deg, var(--blue) 0%, var(--cyan) 50%, var(--blue) 100%);
+  background-size: 200%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+@keyframes shimmer { 0% { background-position: 0%; } 100% { background-position: 200%; } }
+.hero-h1 .line-white { display: block; color: #fff; }
+
+.hero-sub {
+  font-size: clamp(.9rem, 2vw, 1.1rem);
+  color: var(--w70);
+  font-weight: 300;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.8;
+  position: relative; z-index: 2;
+  animation: heroIn 1s cubic-bezier(.16,1,.3,1) .35s both;
+}
+
+.hero-ctas {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+  position: relative; z-index: 2;
+  animation: heroIn 1s cubic-bezier(.16,1,.3,1) .5s both;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--blue);
+  border: none; border-radius: var(--r);
+  padding: 16px 36px;
+  font: 700 .95rem var(--dm);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(0,87,255,.4);
+  transition: all .3s;
+}
+.btn-primary:hover { background: var(--blue2); transform: translateY(-3px); box-shadow: 0 14px 40px rgba(0,87,255,.55); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 16px 28px;
+  font: 500 .9rem var(--dm);
+  color: var(--w70);
+  cursor: pointer; transition: all .3s;
+}
+.btn-outline:hover { border-color: var(--w30); background: var(--w04); color: #fff; }
+
+/* Live meeting card */
+.hero-card {
+  margin-top: 56px;
+  position: relative; z-index: 2;
+  animation: heroIn 1s cubic-bezier(.16,1,.3,1) .65s both;
+}
+.zm-card {
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 20px;
+  max-width: 520px; margin: 0 auto;
+  box-shadow: 0 40px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(0,87,255,.1);
+}
+.zm-bar { display: flex; align-items: center; gap: 7px; margin-bottom: 18px; }
+.zm-dot { width: 11px; height: 11px; border-radius: 50%; }
+.zm-dot.r { background: #ff5f57; } .zm-dot.y { background: #ffbd2e; } .zm-dot.g { background: #28c840; }
+.zm-label { margin-left: auto; font: 600 .72rem var(--mono); color: var(--w30); }
+.zm-status {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(0,230,118,.1);
+  border: 1px solid rgba(0,230,118,.25);
+  border-radius: 100px; padding: 5px 14px; margin-bottom: 14px;
+  font: 700 .7rem var(--mono); color: var(--green);
+}
+.zm-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px; }
+.zm-tile {
+  background: var(--ink3); border: 1px solid var(--border);
+  border-radius: 12px; padding: 12px 6px; text-align: center;
+  transition: all .4s;
+}
+.zm-tile.pulse { border-color: rgba(0,212,255,.4); box-shadow: 0 0 14px rgba(0,212,255,.12); }
+.zm-av {
+  width: 32px; height: 32px; border-radius: 50%; margin: 0 auto 6px;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+  display: flex; align-items: center; justify-content: center;
+  font: 700 .68rem var(--bebas); letter-spacing: .05em;
+}
+.zm-name { font-size: .65rem; color: var(--w50); font-weight: 500; }
+.zm-dot-live { width: 6px; height: 6px; background: var(--green); border-radius: 50%; margin: 4px auto 0; box-shadow: 0 0 6px rgba(0,230,118,.6); }
+.zm-footer {
+  border-top: 1px solid var(--border); padding-top: 12px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.zm-foot-l { font: 600 .72rem var(--mono); color: var(--cyan); }
+.zm-foot-r { font-size: .72rem; color: var(--w30); }
+
+/* float badges */
+.f-badge {
+  position: absolute; background: var(--ink2);
+  border: 1px solid var(--border2);
+  border-radius: var(--r); padding: 10px 16px;
+  font-size: .8rem; font-weight: 600;
+  box-shadow: 0 12px 32px rgba(0,0,0,.4);
+  animation: flt 3.5s ease-in-out infinite;
+  z-index: 3; white-space: nowrap;
+}
+.fb1 { top: -18px; right: -20px; animation-delay: 0s; }
+.fb2 { bottom: -18px; left: -20px; animation-delay: 1.75s; }
+@keyframes flt { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+/* ── TICKER ── */
+.ticker-wrap { overflow: hidden; padding: 14px 0; background: var(--blue); }
+.ticker-inner { display: inline-flex; animation: tick 24s linear infinite; white-space: nowrap; }
+.ti { display: inline-flex; align-items: center; gap: 12px; padding: 0 28px; font: 700 .8rem var(--bebas); letter-spacing: .15em; color: rgba(255,255,255,.85); }
+.ts { opacity: .5; font-size: .5rem; }
+@keyframes tick { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* ── SECTIONS ── */
+.sec { padding: 100px 24px; }
+.container { max-width: 1100px; margin: 0 auto; }
+.sec-eyebrow {
+  font: 700 .68rem var(--mono);
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 12px;
+  display: inline-block;
+}
+.sec-h {
+  font-family: var(--bebas);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  letter-spacing: .04em; line-height: 1;
+  margin-bottom: 18px;
+}
+.sec-p { font-size: .95rem; color: var(--w70); font-weight: 300; line-height: 1.85; max-width: 560px; margin-bottom: 56px; }
+.ctr { text-align: center; }
+.ctr .sec-p { margin: 0 auto 56px; }
+.g { background: linear-gradient(90deg, #fff 30%, var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+/* ── PROBLEM ── */
+#problem { background: var(--ink2); }
+.prob-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-bottom: 32px; }
+.prob-card {
+  background: rgba(255,51,102,.05);
+  border: 1px solid rgba(255,51,102,.18);
+  border-radius: var(--r);
+  padding: 26px;
+  display: flex; align-items: flex-start; gap: 16px;
+  transition: all .35s; cursor: default;
+}
+.prob-card:hover { border-color: rgba(255,51,102,.4); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(255,51,102,.07); }
+.prob-icon {
+  width: 46px; height: 46px; flex-shrink: 0;
+  background: rgba(255,51,102,.12);
+  border: 1px solid rgba(255,51,102,.2);
+  border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.prob-card h4 { font-size: .93rem; font-weight: 700; margin-bottom: 6px; }
+.prob-card p { font-size: .82rem; color: var(--w50); line-height: 1.65; }
+.prob-result {
+  background: rgba(255,51,102,.06);
+  border: 1px solid rgba(255,51,102,.18);
+  border-radius: var(--r); padding: 22px 32px;
+  text-align: center; font-size: 1rem; font-style: italic; color: var(--w70);
+}
+
+/* ── HOW IT WORKS ── */
+#how { background: var(--ink); }
+.how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.steps { display: flex; flex-direction: column; gap: 0; }
+.step {
+  display: flex; gap: 20px;
+  padding: 28px 0; border-bottom: 1px solid var(--border);
+}
+.step:last-child { border-bottom: none; }
+.step-n {
+  width: 48px; height: 48px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font: 800 1.1rem var(--bebas); letter-spacing: .06em;
+  box-shadow: 0 0 20px rgba(0,87,255,.35);
+  transition: all .4s;
+}
+.step:hover .step-n { transform: scale(1.15); box-shadow: 0 0 32px rgba(0,212,255,.5); }
+.step h4 { font-size: .95rem; font-weight: 700; margin-bottom: 5px; }
+.step p { font-size: .83rem; color: var(--w50); line-height: 1.7; }
+
+/* Terminal card */
+.term-card {
+  background: #030810;
+  border: 1px solid rgba(0,212,255,.2);
+  border-radius: var(--r2);
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0,0,0,.5);
+}
+.term-top {
+  background: var(--ink3);
+  padding: 13px 18px;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid rgba(0,212,255,.1);
+}
+.td { width: 11px; height: 11px; border-radius: 50%; }
+.td.r { background: #ff5f57; } .td.y { background: #ffbd2e; } .td.g { background: #28c840; }
+.term-label { margin-left: auto; font: 600 .7rem var(--mono); color: var(--w30); }
+.term-body { padding: 20px; }
+.t-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 14px; border-radius: 11px;
+  margin-bottom: 6px; transition: background .3s;
+}
+.t-row:hover { background: rgba(255,255,255,.04); }
+.t-av {
+  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+  display: flex; align-items: center; justify-content: center;
+  font: 700 .72rem var(--bebas); letter-spacing: .05em;
+}
+.t-info { flex: 1; }
+.t-name { font-size: .85rem; font-weight: 600; }
+.t-role { font: 400 .7rem var(--mono); color: var(--cyan); }
+.t-live { width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 8px rgba(0,230,118,.6); }
+.term-footer {
+  margin-top: 16px; padding: 14px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  font: 600 .72rem var(--mono);
+}
+.tf-l { color: var(--w30); }
+.tf-r { color: var(--cyan); }
+.term-pill {
+  margin-top: 14px;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+  border-radius: 100px; padding: 9px 20px;
+  font: 700 .78rem var(--dm);
+  display: inline-block;
+  box-shadow: 0 4px 16px rgba(0,87,255,.35);
+}
+
+/* ── BENTO GRID ── */
+#features { background: var(--ink2); }
+.bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.bcard {
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 30px;
+  transition: all .4s; position: relative; overflow: hidden;
+  cursor: default;
+}
+.bcard::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(0,87,255,.06), rgba(0,212,255,.04));
+  opacity: 0; transition: opacity .4s;
+}
+.bcard:hover { border-color: rgba(0,212,255,.25); transform: translateY(-6px); box-shadow: 0 24px 56px rgba(0,0,0,.3); }
+.bcard:hover::after { opacity: 1; }
+.bcard-wide { grid-column: span 2; }
+.bi { font-size: 30px; margin-bottom: 18px; }
+.bcard h3 { font-family: var(--bebas); font-size: 1.4rem; letter-spacing: .06em; margin-bottom: 10px; }
+.bcard p { font-size: .85rem; color: var(--w50); line-height: 1.75; }
+.btag {
+  display: inline-block; margin-top: 16px;
+  background: rgba(0,212,255,.1);
+  border: 1px solid rgba(0,212,255,.2);
+  border-radius: 100px; padding: 4px 14px;
+  font: 700 .68rem var(--mono); color: var(--cyan);
+  letter-spacing: .06em;
+}
+
+/* ── COMPARE ── */
+#compare { background: var(--ink); }
+.cmp-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: start; }
+.cmp-side { border-radius: var(--r2); padding: 32px; }
+.bad { background: rgba(255,51,102,.05); border: 1px solid rgba(255,51,102,.18); }
+.good { background: rgba(0,212,255,.05); border: 1px solid rgba(0,212,255,.18); }
+.cmp-head {
+  font-family: var(--bebas); font-size: 1.4rem; letter-spacing: .08em;
+  margin-bottom: 22px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
+}
+.bad .cmp-head { color: var(--red); }
+.good .cmp-head { color: var(--cyan); }
+.cmp-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 14px; border-radius: 11px;
+  font-size: .9rem; transition: background .25s;
+}
+.cmp-row:hover { background: rgba(255,255,255,.04); }
+.cmp-mid { display: flex; align-items: center; justify-content: center; padding-top: 80px; }
+.vs-pill {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+  display: flex; align-items: center; justify-content: center;
+  font: 800 .85rem var(--bebas); letter-spacing: .06em;
+  box-shadow: 0 0 28px rgba(0,212,255,.4);
+}
+
+/* ── PERFECT FOR ── */
+#perfect { background: var(--ink2); }
+.tag-cloud { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.tc-tag {
+  display: flex; align-items: center; gap: 9px;
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: 100px; padding: 14px 26px;
+  font-size: .9rem; font-weight: 500;
+  transition: all .35s; cursor: default;
+}
+.tc-tag:hover {
+  background: rgba(0,87,255,.15);
+  border-color: rgba(0,87,255,.4);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0,87,255,.2);
+}
+
+/* ── MOTU ── */
+#motu {
+  background: var(--ink3);
+  position: relative; overflow: hidden;
+}
+#motu::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 60% 50%, rgba(0,87,255,.1) 0%, transparent 60%);
+}
+.motu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 2; }
+.motu-left { text-align: center; }
+.motu-orb {
+  width: 220px; height: 220px;
+  border-radius: 50%; margin: 0 auto 24px;
+  background: var(--ink2);
+  border: 2px solid rgba(0,212,255,.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 90px;
+  box-shadow: 0 0 60px rgba(0,87,255,.15), 0 40px 80px rgba(0,0,0,.5);
+  position: relative; z-index: 2;
+  animation: motuF 5s ease-in-out infinite;
+}
+@keyframes motuF { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+.motu-ring {
+  position: absolute; top: 50%; left: 50%;
+  border-radius: 50%; border: 1px solid rgba(0,212,255,.12);
+  transform: translate(-50%, -50%);
+  animation: rPulse 3s ease-in-out infinite;
+}
+.mr1 { width: 280px; height: 280px; }
+.mr2 { width: 360px; height: 360px; animation-delay: .6s; opacity: .6; }
+.mr3 { width: 440px; height: 440px; animation-delay: 1.2s; opacity: .3; }
+@keyframes rPulse { 0%,100% { opacity: .3; transform: translate(-50%, -50%) scale(1); } 50% { opacity: .7; transform: translate(-50%, -50%) scale(1.03); } }
+.motu-quote {
+  font-family: var(--bebas);
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  letter-spacing: .04em; line-height: 1.1;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #fff, var(--cyan));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.motu-desc { font-size: .88rem; color: var(--w70); font-weight: 300; line-height: 1.85; margin-bottom: 32px; }
+
+/* ── FAQ ── */
+#faq { background: var(--ink); }
+.faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+.faq-item {
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  transition: border-color .3s;
+}
+.faq-item:hover { border-color: rgba(0,87,255,.25); }
+.faq-item.open { border-color: rgba(0,87,255,.35); }
+.faq-btn {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 24px; background: none; border: none;
+  color: var(--white); font: 600 .93rem var(--dm);
+  cursor: pointer; text-align: left; gap: 14px;
+}
+.faq-ico {
+  width: 30px; height: 30px; border-radius: 50%;
+  border: 1px solid var(--border); background: var(--w04);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0; transition: all .35s;
+}
+.faq-item.open .faq-ico { background: var(--blue); border-color: var(--blue); transform: rotate(45deg); }
+.faq-ans {
+  max-height: 0; overflow: hidden;
+  transition: max-height .4s ease, padding .3s;
+  font-size: .87rem; color: var(--w70); font-weight: 300; line-height: 1.8;
+}
+.faq-item.open .faq-ans { max-height: 200px; padding: 0 24px 22px; }
+
+/* ══════════════════════════════════
+   TELEGRAM BOT SECTION — THE STAR
+══════════════════════════════════ */
+#bot { background: var(--ink2); position: relative; overflow: hidden; }
+#bot::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 20% 60%, rgba(0,136,204,.1) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 40%, rgba(0,87,255,.08) 0%, transparent 50%);
+}
+.bot-inner { position: relative; z-index: 2; }
+.bot-head { text-align: center; margin-bottom: 52px; }
+.tg-icon {
+  width: 82px; height: 82px; border-radius: 22px; margin: 0 auto 20px;
+  background: linear-gradient(135deg, #0088cc, #00aaff);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 42px;
+  box-shadow: 0 10px 36px rgba(0,136,204,.4);
+  animation: tgPop 3.5s ease-in-out infinite;
+}
+@keyframes tgPop { 0%,100% { transform: scale(1); box-shadow: 0 10px 36px rgba(0,136,204,.4); } 50% { transform: scale(1.07); box-shadow: 0 14px 44px rgba(0,136,204,.6); } }
+
+/* Tabs */
+.bot-tabs {
+  display: flex;
+  background: var(--ink3); border: 1px solid var(--border);
+  border-radius: var(--r2); padding: 5px;
+  max-width: 520px; margin: 0 auto 44px;
+}
+.btab {
+  flex: 1; border: none; background: transparent;
+  color: var(--w50); font: 600 .82rem var(--dm);
+  border-radius: 14px; padding: 11px 6px;
+  cursor: pointer; transition: all .3s; text-align: center;
+}
+.btab.on {
+  background: var(--blue); color: #fff;
+  box-shadow: 0 4px 16px rgba(0,87,255,.4);
+}
+.btab:not(.on):hover { color: var(--w90); background: var(--w04); }
+
+/* Panels */
+.bpanel { display: none; }
+.bpanel.on { display: block; animation: fadeUp .4s ease; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Benefits grid */
+.ben-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 32px; }
+.ben-card {
+  background: var(--ink3); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 24px; text-align: center;
+  transition: all .35s; cursor: default;
+}
+.ben-card:hover { border-color: rgba(0,87,255,.3); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.2); }
+.ben-ico { font-size: 28px; margin-bottom: 12px; }
+.ben-card h4 { font-size: .9rem; font-weight: 700; margin-bottom: 7px; }
+.ben-card p { font-size: .8rem; color: var(--w50); line-height: 1.65; }
+
+/* Demo panel */
+.demo-card {
+  background: #030810;
+  border: 1px solid rgba(0,212,255,.2);
+  border-radius: var(--r2); overflow: hidden;
+  max-width: 560px; margin: 0 auto;
+  box-shadow: 0 30px 70px rgba(0,0,0,.5);
+}
+.demo-top {
+  background: var(--ink3); padding: 13px 18px;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid rgba(0,212,255,.1);
+}
+.dd { width: 11px; height: 11px; border-radius: 50%; }
+.dd.r { background: #ff5f57; } .dd.y { background: #ffbd2e; } .dd.g { background: #28c840; }
+.demo-label { margin-left: auto; font: 600 .7rem var(--mono); color: var(--w30); }
+.demo-body { padding: 20px; }
+.demo-cnt {
+  text-align: center; margin-bottom: 16px;
+  font-family: var(--bebas); font-size: 1.3rem;
+  letter-spacing: .08em; color: var(--green);
+}
+.demo-list { display: flex; flex-direction: column; gap: 8px; min-height: 200px; }
+.demo-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px;
+  background: var(--ink3); border: 1px solid var(--border);
+  border-radius: 11px;
+  animation: slideIn .5s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes slideIn { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: translateX(0); } }
+.da { width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0; background: linear-gradient(135deg, var(--blue), var(--cyan)); display: flex; align-items: center; justify-content: center; font: 700 .68rem var(--bebas); }
+.di { flex: 1; }
+.dn { font-size: .85rem; font-weight: 600; }
+.dt { font: 400 .7rem var(--mono); color: var(--cyan); }
+.dl { width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 8px rgba(0,230,118,.6); }
+.demo-footer {
+  margin-top: 14px; padding: 14px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.demo-stats { display: flex; gap: 20px; }
+.dstat-n { font-family: var(--bebas); font-size: 1.2rem; letter-spacing: .06em; color: var(--cyan); }
+.dstat-l { font-size: .68rem; color: var(--w30); text-transform: uppercase; letter-spacing: .06em; }
+
+/* Pricing panel */
+.price-wrap { max-width: 640px; margin: 0 auto; }
+.price-note {
+  background: rgba(0,212,255,.07);
+  border: 1px solid rgba(0,212,255,.18);
+  border-radius: var(--r); padding: 16px 20px;
+  font-size: .85rem; color: var(--w70); text-align: center; line-height: 1.7;
+  margin-bottom: 20px;
+}
+.ptable { width: 100%; border-collapse: collapse; border-radius: var(--r); overflow: hidden; }
+.ptable th {
+  background: rgba(0,87,255,.15); padding: 12px 16px;
+  font: 700 .72rem var(--mono); letter-spacing: .08em;
+  text-transform: uppercase; color: var(--w50); text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.ptable td { padding: 13px 16px; font-size: .9rem; border-bottom: 1px solid rgba(255,255,255,.05); transition: background .2s; }
+.ptable tr:hover td { background: rgba(255,255,255,.03); }
+.ptable tr:last-child td { border-bottom: none; }
+.prate { color: var(--cyan); font: 800 .95rem var(--mono); }
+.pbadge {
+  display: inline-block;
+  background: rgba(0,230,118,.12); border: 1px solid rgba(0,230,118,.25);
+  color: var(--green); border-radius: 100px;
+  padding: 3px 10px; font: 700 .68rem var(--mono);
+}
+.price-extra {
+  margin-top: 16px;
+  background: rgba(245,166,35,.07); border: 1px solid rgba(245,166,35,.18);
+  border-radius: var(--r); padding: 14px 18px;
+  font-size: .83rem; color: var(--w70); text-align: center; line-height: 1.7;
+}
+
+/* ── CONTACT ── */
+#contact { padding: 120px 24px; background: var(--ink); position: relative; overflow: hidden; }
+#contact::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(0,87,255,.08) 0%, transparent 65%); }
+.ctc-card {
+  max-width: 640px; margin: 0 auto; text-align: center;
+  background: var(--ink2); border: 1px solid var(--border);
+  border-radius: 32px; padding: 72px 44px;
+  box-shadow: 0 40px 80px rgba(0,0,0,.4), 0 0 0 1px rgba(0,87,255,.08);
+  position: relative; z-index: 2;
+}
+.ctc-handle {
+  display: inline-block; margin-bottom: 32px;
+  background: var(--ink3); border: 1px solid rgba(0,212,255,.25);
+  border-radius: 14px; padding: 14px 30px;
+  font: 800 1.3rem var(--mono); color: var(--cyan);
+  box-shadow: 0 0 24px rgba(0,212,255,.1);
+  animation: handlePulse 2.5s ease-in-out infinite;
+}
+@keyframes handlePulse { 0%,100% { box-shadow: 0 0 24px rgba(0,212,255,.1); } 50% { box-shadow: 0 0 40px rgba(0,212,255,.25); } }
+.btn-tg {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: linear-gradient(135deg, #0088cc, #00aaff);
+  border: none; border-radius: var(--r);
+  padding: 18px 48px;
+  font: 800 1rem var(--dm); color: #fff; letter-spacing: .02em;
+  cursor: pointer;
+  box-shadow: 0 10px 32px rgba(0,136,204,.45);
+  transition: all .35s;
+}
+.btn-tg:hover { transform: translateY(-4px); box-shadow: 0 18px 44px rgba(0,136,204,.6); }
+.ctc-tag { font-size: .85rem; color: var(--w30); margin-top: 24px; font-style: italic; }
+
+/* ── FOOTER ── */
+footer { padding: 32px 24px; border-top: 1px solid var(--border); text-align: center; color: var(--w30); font-size: .78rem; }
+footer a { color: var(--cyan); }
+
+/* ── REVEAL ── */
+.rv { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .7s ease; }
+.rv.in { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; }
+
+/* ── RESPONSIVE ── */
+@media(max-width: 900px) {
+  .how-grid { grid-template-columns: 1fr; }
+  .term-card { display: none; }
+  .bento { grid-template-columns: 1fr 1fr; }
+  .bcard-wide { grid-column: span 2; }
+  .cmp-grid { grid-template-columns: 1fr; }
+  .cmp-mid { display: none; }
+  .motu-grid { grid-template-columns: 1fr; text-align: center; gap: 48px; }
+  .hero-card .f-badge { display: none; }
+  .nav-handle { display: block; }
+  .zm-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media(max-width: 600px) {
+  .bento { grid-template-columns: 1fr; }
+  .bcard-wide { grid-column: span 1; }
+  .ctc-card { padding: 48px 20px; }
+  .sec { padding: 72px 20px; }
+  .sec-h { font-size: 2.8rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo">ZOOMPARTICIPANTS</div>
+  <div class="nav-right">
+    <span class="nav-handle">@armanparticipantsbot</span>
+    <a href="https://t.me/armanparticipantsbot" target="_blank" class="btn-nav">✈️ Book Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow hg1"></div>
+    <div class="hero-glow hg2"></div>
+    <div class="hero-glow hg3"></div>
+  </div>
+  <div class="hero-badge"><span class="badge-dot"></span>Zoom Meeting Attendees Available Now</div>
+  <h1 class="hero-h1">
+    <span class="line-white">ZOOM MEETING</span>
+    <span class="line-blue">PARTICIPANTS</span>
+    <span class="line-white">AVAILABLE</span>
+  </h1>
+  <p class="hero-sub">Need active participants for your online meetings, webinars, workshops or virtual events? Our professional zoom meeting attendee team joins using your custom name list.</p>
+  <div class="hero-ctas">
+    <a href="https://t.me/armanparticipantsbot" target="_blank" class="btn-primary">✈️ Contact on Telegram</a>
+    <a href="#how" class="btn-outline">How It Works ↓</a>
+  </div>
+  <div class="hero-card">
+    <div style="position:relative;display:inline-block;width:100%;max-width:520px">
+      <div class="f-badge fb1">👥 8 Attendees Active</div>
+      <div class="zm-card">
+        <div class="zm-bar">
+          <div class="zm-dot r"></div><div class="zm-dot y"></div><div class="zm-dot g"></div>
+          <div class="zm-label">Your Meeting — Live</div>
+        </div>
+        <div class="zm-status"><span style="width:7px;height:7px;background:var(--green);border-radius:50%;display:inline-block;box-shadow:0 0 6px rgba(0,230,118,.6)"></span>All Zoom Meeting Attendees Joined</div>
+        <div class="zm-grid" id="zmGrid">
+          <div class="zm-tile"><div class="zm-av">AK</div><div class="zm-name">Alex Kumar</div><div class="zm-dot-live"></div></div>
+          <div class="zm-tile"><div class="zm-av">SR</div><div class="zm-name">Sara Raza</div><div class="zm-dot-live"></div></div>
+          <div class="zm-tile"><div class="zm-av">MJ</div><div class="zm-name">Mark J.</div><div class="zm-dot-live"></div></div>
+          <div class="zm-tile"><div class="zm-av">NP</div><div class="zm-name">Nina Patel</div><div class="zm-dot-live"></div></div>
+        </div>
+        <div class="zm-footer">
+          <div class="zm-foot-l">✓ Custom Names Applied</div>
+          <div class="zm-foot-r">Zoom Meeting • Live</div>
+        </div>
+      </div>
+      <div class="f-badge fb2">📝 Names Customizable ✓</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner" id="ticker">
+    <span class="ti">ZOOM MEETING ATTENDEE SERVICE <span class="ts">●</span></span>
+    <span class="ti">ACTIVE PARTICIPANTS AVAILABLE <span class="ts">●</span></span>
+    <span class="ti">WEBINAR AUDIENCE SUPPORT <span class="ts">●</span></span>
+    <span class="ti">CUSTOM NAME LIST <span class="ts">●</span></span>
+    <span class="ti">ONLINE MEETING ENGAGEMENT <span class="ts">●</span></span>
+    <span class="ti">VIRTUAL EVENT PARTICIPANTS <span class="ts">●</span></span>
+    <span class="ti">ZOOM MEETING ATTENDEE SERVICE <span class="ts">●</span></span>
+    <span class="ti">ACTIVE PARTICIPANTS AVAILABLE <span class="ts">●</span></span>
+    <span class="ti">WEBINAR AUDIENCE SUPPORT <span class="ts">●</span></span>
+    <span class="ti">CUSTOM NAME LIST <span class="ts">●</span></span>
+    <span class="ti">ONLINE MEETING ENGAGEMENT <span class="ts">●</span></span>
+    <span class="ti">VIRTUAL EVENT PARTICIPANTS <span class="ts">●</span></span>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section id="problem" class="sec">
+  <div class="container">
+    <div class="rv"><div class="sec-eyebrow">The Problem</div></div>
+    <h2 class="sec-h rv">Are You Facing <span class="g">These Problems?</span></h2>
+    <p class="sec-p rv">Every empty zoom meeting attendee slot reduces the impact of your hard work. These challenges affect organizers worldwide.</p>
+    <div class="prob-grid">
+      <div class="prob-card rv d1"><div class="prob-icon">📉</div><div><h4>Low Attendance In Meetings</h4><p>Your zoom meeting attendee count stays low, making sessions feel hollow and discouraging for everyone.</p></div></div>
+      <div class="prob-card rv d2"><div class="prob-icon">🏚️</div><div><h4>Empty Webinar Rooms</h4><p>You invest time and money in content but the audience numbers disappoint every time.</p></div></div>
+      <div class="prob-card rv d3"><div class="prob-icon">😶</div><div><h4>Poor Audience Engagement</h4><p>Participants join silently and leave without any meaningful interaction or discussion.</p></div></div>
+      <div class="prob-card rv d1"><div class="prob-icon">🎤</div><div><h4>No Interaction During Presentations</h4><p>Silence in chat. No questions. No reactions. Presenting to a lifeless room kills momentum fast.</p></div></div>
+      <div class="prob-card rv d2"><div class="prob-icon">💤</div><div><h4>Meetings That Feel Inactive</h4><p>Low zoom meeting attendee presence drains energy and confidence from even great presenters.</p></div></div>
+      <div class="prob-card rv d3"><div class="prob-icon">📊</div><div><h4>Weak Discussion Participation</h4><p>Breakout rooms and open discussions fall completely flat with reluctant or absent attendees.</p></div></div>
+    </div>
+    <div class="prob-result rv">💡 <em>"Even great presentations can lose their impact when participation is low."</em></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="sec">
+  <div class="container">
+    <div class="how-grid">
+      <div>
+        <div class="rv"><div class="sec-eyebrow">Simple Process</div></div>
+        <h2 class="sec-h rv">How It <span class="g">Works</span></h2>
+        <p class="sec-p rv">Four simple steps to get professional zoom meeting attendees for your session — fast.</p>
+        <div class="steps">
+          <div class="step rv d1"><div class="step-n">1</div><div><h4>Share Your Meeting Details</h4><p>Send your Zoom meeting link, date, time and participant count via Telegram.</p></div></div>
+          <div class="step rv d2"><div class="step-n">2</div><div><h4>Provide Your Custom Name List</h4><p>Give us the exact names you want every zoom meeting attendee to use when joining.</p></div></div>
+          <div class="step rv d3"><div class="step-n">3</div><div><h4>Our Team Joins On Schedule</h4><p>We join at the right time with your specified names — professional and punctual every time.</p></div></div>
+          <div class="step rv d4"><div class="step-n">4</div><div><h4>Your Meeting Comes Alive</h4><p>Active zoom meeting attendees create an energized, credible and engaging session environment.</p></div></div>
+        </div>
+      </div>
+      <div class="rv">
+        <div class="term-card">
+          <div class="term-top">
+            <div class="td r"></div><div class="td y"></div><div class="td g"></div>
+            <div class="term-label">Active Zoom Meeting Attendees</div>
+          </div>
+          <div class="term-body">
+            <div class="t-row"><div class="t-av">JD</div><div class="t-info"><div class="t-name">John Doe</div><div class="t-role">Zoom Meeting Attendee</div></div><div class="t-live"></div></div>
+            <div class="t-row"><div class="t-av">AS</div><div class="t-info"><div class="t-name">Amara Singh</div><div class="t-role">Zoom Meeting Attendee</div></div><div class="t-live"></div></div>
+            <div class="t-row"><div class="t-av">RK</div><div class="t-info"><div class="t-name">Rajan Kumar</div><div class="t-role">Zoom Meeting Attendee</div></div><div class="t-live"></div></div>
+            <div class="t-row"><div class="t-av">NW</div><div class="t-info"><div class="t-name">Nina Walsh</div><div class="t-role">Zoom Meeting Attendee</div></div><div class="t-live"></div></div>
+            <div class="t-row"><div class="t-av">PT</div><div class="t-info"><div class="t-name">Priya Tiwari</div><div class="t-role">Zoom Meeting Attendee</div></div><div class="t-live"></div></div>
+            <div class="term-footer"><span class="tf-l">Names provided by you</span><span class="tf-r">100% Customizable ✓</span></div>
+            <div class="term-pill">✓ 5 Zoom Meeting Attendees Active</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENTO FEATURES -->
+<section id="features" class="sec">
+  <div class="container">
+    <div class="ctr rv"><div class="sec-eyebrow">Why Choose Us</div></div>
+    <h2 class="sec-h ctr rv">Built For <span class="g">Your Success</span></h2>
+    <p class="sec-p ctr rv">Professional, reliable and fully customizable for every online meeting format.</p>
+    <div class="bento">
+      <div class="bcard bcard-wide rv d1">
+        <div class="bi">👔</div>
+        <h3>Professional Zoom Meeting Attendee Team</h3>
+        <p>Every person on our team understands virtual meeting etiquette and joins as a proper, professional zoom meeting attendee. Trained, consistent and reliable — your meeting credibility stays intact from start to finish. We never show up late or behave unprofessionally.</p>
+        <div class="btag">Professional Grade ✓</div>
+      </div>
+      <div class="bcard rv d2">
+        <div class="bi">📝</div>
+        <h3>Custom Name List Support</h3>
+        <p>You provide the names, we use them exactly. Every zoom meeting attendee joins with the name you specified. Full control over your participant list.</p>
+        <div class="btag">100% Custom ✓</div>
+      </div>
+      <div class="bcard rv d1">
+        <div class="bi">⚡</div>
+        <h3>Quick Telegram Response</h3>
+        <p>Fast booking via @armanparticipantsbot. Confirm participants, share names and get your meeting covered in minutes.</p>
+        <div class="btag">Fast Response ✓</div>
+      </div>
+      <div class="bcard rv d2">
+        <div class="bi">🎯</div>
+        <h3>Flexible &amp; Adaptable</h3>
+        <p>Works across any timezone, any schedule and any Zoom meeting format your session requires.</p>
+        <div class="btag">Flexible ✓</div>
+      </div>
+      <div class="bcard rv d3">
+        <div class="bi">🛡️</div>
+        <h3>Reliable Every Time</h3>
+        <p>Consistent, dependable zoom meeting attendee service. We show up on time, every time.</p>
+        <div class="btag">Reliable ✓</div>
+      </div>
+      <div class="bcard rv d4">
+        <div class="bi">🌐</div>
+        <h3>All Meeting Types</h3>
+        <p>Webinars, online classes, workshops, corporate meetings and large virtual events — all supported.</p>
+        <div class="btag">Universal ✓</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section id="compare" class="sec">
+  <div class="container">
+    <div class="ctr rv"><div class="sec-eyebrow">The Difference</div></div>
+    <h2 class="sec-h ctr rv">Before &amp; <span class="g">After</span></h2>
+    <br>
+    <div class="cmp-grid">
+      <div class="cmp-side bad rv d1">
+        <div class="cmp-head">❌ Without Our Service</div>
+        <div class="cmp-row">😞 Low zoom meeting attendee count</div>
+        <div class="cmp-row">🤐 No interaction or responses</div>
+        <div class="cmp-row">📉 Reduced audience engagement</div>
+        <div class="cmp-row">😴 Passive, silent audience</div>
+        <div class="cmp-row">💀 Weak meeting atmosphere</div>
+        <div class="cmp-row">😓 Great content, zero impact</div>
+      </div>
+      <div class="cmp-mid"><div class="vs-pill">VS</div></div>
+      <div class="cmp-side good rv d2">
+        <div class="cmp-head">✅ With Our Service</div>
+        <div class="cmp-row">🎉 Active zoom meeting attendees</div>
+        <div class="cmp-row">🗣️ Real interaction and discussion</div>
+        <div class="cmp-row">📈 Stronger engagement throughout</div>
+        <div class="cmp-row">👔 Professional presence in room</div>
+        <div class="cmp-row">✨ Energized meeting atmosphere</div>
+        <div class="cmp-row">🚀 Maximum content impact</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERFECT FOR -->
+<section id="perfect" class="sec">
+  <div class="container">
+    <div class="ctr rv"><div class="sec-eyebrow">Use Cases</div></div>
+    <h2 class="sec-h ctr rv">Perfect <span class="g">For Every Format</span></h2>
+    <p class="sec-p ctr rv">Any online session needing active zoom meeting attendees — we've got you covered.</p>
+    <div class="tag-cloud">
+      <div class="tc-tag rv d1">📡 Webinars</div>
+      <div class="tc-tag rv d2">📚 Online Classes</div>
+      <div class="tc-tag rv d3">🛠️ Workshops</div>
+      <div class="tc-tag rv d1">💼 Business Meetings</div>
+      <div class="tc-tag rv d2">🎤 Conferences</div>
+      <div class="tc-tag rv d3">🎓 Training Sessions</div>
+      <div class="tc-tag rv d1">🌐 Virtual Events</div>
+      <div class="tc-tag rv d2">🎬 Live Presentations</div>
+    </div>
+  </div>
+</section>
+
+<!-- MOTU -->
+<section id="motu" class="sec">
+  <div class="container">
+    <div class="motu-grid">
+      <div class="motu-left rv">
+        <div style="position:relative;width:220px;margin:0 auto;">
+          <div class="motu-ring mr3"></div>
+          <div class="motu-ring mr2"></div>
+          <div class="motu-ring mr1"></div>
+          <div class="motu-orb">🤝</div>
+        </div>
+        <div style="margin-top:20px;font:700 .72rem var(--mono);color:var(--w30);letter-spacing:.15em;text-transform:uppercase">Meet Motu — Face of Participation</div>
+      </div>
+      <div class="rv">
+        <div class="sec-eyebrow">Brand Ambassador</div>
+        <div class="motu-quote">"Great Presentation...<br>But Where's The Audience?"</div>
+        <p class="motu-desc">Motu represents what every online meeting deserves — a room full of active zoom meeting attendees, genuine energy and real interaction. Because no great presentation should be delivered to an empty, silent room.<br><br>He stands for the belief that <strong>great content deserves an active audience</strong>. That's exactly what we provide — professional zoom meeting attendee support for every session.</p>
+        <a href="https://t.me/armanparticipantsbot" target="_blank" class="btn-primary" style="display:inline-flex">✈️ Get Participants Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TELEGRAM BOT SECTION -->
+<section id="bot" class="sec">
+  <div class="container bot-inner">
+    <div class="bot-head rv">
+      <div class="tg-icon">✈️</div>
+      <div class="sec-eyebrow" style="justify-content:center;display:flex">Your Booking Bot</div>
+      <h2 class="sec-h">Meet <span class="g">@armanparticipantsbot</span></h2>
+      <p class="sec-p ctr rv" style="margin-bottom:0">Your complete zoom meeting attendee booking system — right inside Telegram. Book, manage and track participants with a few taps.</p>
+    </div>
+
+    <div class="bot-tabs rv">
+      <button class="btab on" onclick="switchTab('benefits',this)">🚀 Bot Features</button>
+      <button class="btab" onclick="switchTab('demo',this)">👥 Live Demo</button>
+      <button class="btab" onclick="switchTab('pricing',this)">💰 Pricing</button>
+    </div>
+
+    <!-- BENEFITS -->
+    <div class="bpanel on" id="tab-benefits">
+      <div class="ben-grid">
+        <div class="ben-card rv d1"><div class="ben-ico">📋</div><h4>Schedule Meetings</h4><p>Book zoom meeting attendees for today or multiple future dates with just a few messages in Telegram.</p></div>
+        <div class="ben-card rv d2"><div class="ben-ico">📝</div><h4>Custom Name Lists</h4><p>Paste your complete name list. Every zoom meeting attendee joins with your exact preferred names.</p></div>
+        <div class="ben-card rv d3"><div class="ben-ico">⚡</div><h4>Instant Confirmation</h4><p>Get booking confirmation instantly — participant count, meeting details and amount — all in chat.</p></div>
+        <div class="ben-card rv d1"><div class="ben-ico">💰</div><h4>Wallet &amp; Balance</h4><p>Check live balance, add funds and track every zoom meeting attendee session booking in one place.</p></div>
+        <div class="ben-card rv d2"><div class="ben-ico">📅</div><h4>Multi-Date Booking</h4><p>Schedule the same meeting across multiple days — one form setup, many zoom meeting attendee sessions.</p></div>
+        <div class="ben-card rv d3"><div class="ben-ico">🛡️</div><h4>Secure &amp; Private</h4><p>All details handled securely inside Telegram's encrypted environment. No external forms needed.</p></div>
+      </div>
+      <div style="text-align:center;margin-top:8px" class="rv">
+        <a href="https://t.me/armanparticipantsbot" target="_blank" class="btn-primary">✈️ Open Bot Now</a>
+      </div>
+    </div>
+
+    <!-- DEMO -->
+    <div class="bpanel" id="tab-demo">
+      <div class="demo-card rv">
+        <div class="demo-top">
+          <div class="dd r"></div><div class="dd y"></div><div class="dd g"></div>
+          <div class="demo-label">Live — Zoom Meeting Attendees Joining...</div>
+        </div>
+        <div class="demo-body">
+          <div class="demo-cnt" id="demoCnt">👥 <span id="demoNum">0</span> Zoom Meeting Attendees Joined</div>
+          <div class="demo-list" id="demoList"></div>
+          <div class="demo-footer">
+            <div class="demo-stats">
+              <div><div class="dstat-n" id="dTotal">0</div><div class="dstat-l">Total Joined</div></div>
+              <div><div class="dstat-n" style="color:var(--green)" id="dActive">0</div><div class="dstat-l">Active Now</div></div>
+            </div>
+            <div style="font:700 .72rem var(--mono);color:var(--cyan)">Live Demo ✓</div>
+          </div>
+        </div>
+      </div>
+      <p style="text-align:center;color:var(--w30);font-size:.82rem;margin-top:14px">↑ Watch zoom meeting attendees join your session in real time</p>
+    </div>
+
+    <!-- PRICING -->
+    <div class="bpanel" id="tab-pricing">
+      <div class="price-wrap">
+        <div class="price-note rv">💡 Pricing based on <strong>number of participants</strong>. More attendees = lower rate per member. Rates are per zoom meeting attendee per session.</div>
+        <div class="rv">
+          <table class="ptable">
+            <thead><tr><th>Participants</th><th>Rate / Member</th><th>Example (1hr)</th><th>Best For</th></tr></thead>
+            <tbody>
+              <tr><td>Up to 50</td><td class="prate">₹1.10</td><td>₹55</td><td>Small sessions</td></tr>
+              <tr><td>Up to 100</td><td class="prate">₹1.00</td><td>₹100</td><td>Webinars</td></tr>
+              <tr><td>Up to 200</td><td class="prate">₹0.95</td><td>₹190</td><td>Online classes</td></tr>
+              <tr><td>Up to 300</td><td class="prate">₹0.90</td><td>₹270</td><td>Workshops</td></tr>
+              <tr><td>Up to 500</td><td class="prate">₹0.80</td><td>₹400 <span class="pbadge">Popular</span></td><td>Events</td></tr>
+              <tr><td>1000+</td><td class="prate">₹0.75</td><td>₹750</td><td>Conferences</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="price-extra rv">⏱️ Duration: <strong>1hr = 1×</strong> · <strong>2hr = 1.15×</strong> · <strong>3hr = 1.31×</strong><br>🎯 Add-ons: Reaction Mode <strong>+₹0.20/member</strong> · Auto Comment available</div>
+        <div style="text-align:center;margin-top:24px" class="rv">
+          <a href="https://t.me/armanparticipantsbot" target="_blank" class="btn-primary">✈️ Book on Telegram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="sec">
+  <div class="container">
+    <div class="ctr rv"><div class="sec-eyebrow">FAQ</div></div>
+    <h2 class="sec-h ctr rv">Common <span class="g">Questions</span></h2>
+    <br>
+    <div class="faq-list">
+      <div class="faq-item rv"><button class="faq-btn">What does the zoom meeting attendee service do? <div class="faq-ico">+</div></button><div class="faq-ans">We provide a professional team that joins your Zoom meetings or virtual events as active zoom meeting attendees using names you specify, creating a more engaging and credible session environment.</div></div>
+      <div class="faq-item rv"><button class="faq-btn">How does zoom meeting attendee participation work? <div class="faq-ico">+</div></button><div class="faq-ans">You share your meeting link and timing via Telegram @armanparticipantsbot. Our team joins at the scheduled time using your provided participant names, appearing as normal attendees in your Zoom session.</div></div>
+      <div class="faq-item rv"><button class="faq-btn">Can zoom meeting attendee names be fully customized? <div class="faq-ico">+</div></button><div class="faq-ans">Yes! You provide your complete name list and every zoom meeting attendee joins with exactly those names. Full customization is a standard part of our service at no extra cost.</div></div>
+      <div class="faq-item rv"><button class="faq-btn">How quickly can participants be arranged? <div class="faq-ico">+</div></button><div class="faq-ans">We respond fast via Telegram. Contact us at least 15-20 minutes before your meeting for smooth coordination. Quick response is a priority for us.</div></div>
+      <div class="faq-item rv"><button class="faq-btn">What types of online meetings are supported? <div class="faq-ico">+</div></button><div class="faq-ans">We support webinars, online classes, workshops, business meetings, virtual events, conferences, training sessions and live presentations — any format where you need an active zoom meeting attendee team.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="ctc-card rv">
+      <div class="sec-eyebrow" style="display:inline-block">Get Started</div>
+      <h2 class="sec-h">Need Participants For<br><span class="g">Your Next Meeting?</span></h2>
+      <p style="color:var(--w50);margin:16px 0 32px;font-weight:300;font-size:.92rem">Whether you need 50 or 1000 zoom meeting attendees — contact us directly. Fast response, custom names, flexible scheduling.</p>
+      <div class="ctc-handle">@armanparticipantsbot</div><br><br>
+      <a href="https://t.me/armanparticipantsbot" target="_blank" class="btn-tg">✈️ Message On Telegram</a>
+      <p class="ctc-tag">Great Content Deserves An Active Audience.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2024 Zoom Meeting Participants &nbsp;·&nbsp; Professional Zoom Meeting Attendee Solutions &nbsp;·&nbsp; <a href="https://t.me/armanparticipantsbot" target="_blank">@armanparticipantsbot</a></p>
+</footer>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').style.background =
+    window.scrollY > 50 ? 'rgba(4,8,15,.98)' : 'rgba(4,8,15,.85)';
+});
+
+// Reveal on scroll
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+// Ticker duplicate
+const t = document.getElementById('ticker');
+t.innerHTML += t.innerHTML;
+
+// FAQ accordion
+document.querySelectorAll('.faq-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!open) item.classList.add('open');
+  });
+});
+
+// Bot tab switch
+function switchTab(id, btn) {
+  document.querySelectorAll('.btab').forEach(b => b.classList.remove('on'));
+  document.querySelectorAll('.bpanel').forEach(p => p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('tab-' + id).classList.add('on');
+  if (id === 'demo') startDemo();
+}
+
+// Demo animation
+const demoNames = [
+  {i:'AK',n:'Alex Kumar'},{i:'SR',n:'Sara Rahman'},{i:'MJ',n:'Mark Johnson'},
+  {i:'NP',n:'Nina Patel'},{i:'TW',n:'Tom Wang'},{i:'EC',n:'Eva Chen'},
+  {i:'RK',n:'Rajan Kumar'},{i:'LP',n:'Lisa Park'}
+];
+let dIdx = 0, dTimer = null;
+
+function startDemo() {
+  const list = document.getElementById('demoList');
+  list.innerHTML = ''; dIdx = 0;
+  ['demoNum','dTotal','dActive'].forEach(id => document.getElementById(id).textContent = '0');
+  clearInterval(dTimer);
+  dTimer = setInterval(() => {
+    if (dIdx >= demoNames.length) { clearInterval(dTimer); return; }
+    const d = demoNames[dIdx];
+    const row = document.createElement('div');
+    row.className = 'demo-row';
+    row.style.animationDelay = (dIdx * .08) + 's';
+    row.innerHTML = `<div class="da">${d.i}</div><div class="di"><div class="dn">${d.n}</div><div class="dt">Zoom Meeting Attendee</div></div><div class="dl"></div>`;
+    list.appendChild(row);
+    dIdx++;
+    document.getElementById('demoNum').textContent = dIdx;
+    document.getElementById('dTotal').textContent = dIdx;
+    document.getElementById('dActive').textContent = dIdx;
+  }, 650);
+}
+
+// Pulse Zoom tiles randomly
+const tiles = document.querySelectorAll('.zm-tile');
+if (tiles.length) {
+  setInterval(() => {
+    const i = Math.floor(Math.random() * tiles.length);
+    tiles[i].classList.add('pulse');
+    setTimeout(() => tiles[i].classList.remove('pulse'), 900);
+  }, 1300);
+}
+</script>
+</body>
+</html>
